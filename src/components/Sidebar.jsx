@@ -1,6 +1,6 @@
 import { FaHome } from "react-icons/fa";
 import { GoGoal } from "react-icons/go";
-import { MdStickyNote2 } from "react-icons/md";
+import NoteLogo from "../assets/Notes-amico.svg";
 
 const sidebarElements = [
   { name: "Dashboard", icon: FaHome, link: "/dashboard" },
@@ -11,7 +11,11 @@ export const Sidebar = () => {
   return (
     <main className="min-h-screen p-3  w-60 bg-gray-900 text-gray-100">
       <section className="flex items-center p-2 space-x-4">
-        <MdStickyNote2 className="w-12 h-12 rounded-full dark:bg-gray-500" />
+        <img
+          src={NoteLogo}
+          className="w-12 h-12 rounded-full dark:bg-gray-500"
+        />
+
         <div>
           <h2 className="text-lg font-semibold">NoteBox</h2>
         </div>
