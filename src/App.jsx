@@ -1,7 +1,6 @@
 import { useState } from "react";
-
-import Dashboard from "./pages/Dashboard";
-import { Sidebar } from "./components/Sidebar";
+import { Dashboard } from "src/pages";
+import { Sidebar } from "src/components";
 
 function App() {
   const [count, setCount] = useState(0);
