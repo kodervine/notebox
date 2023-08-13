@@ -6,12 +6,12 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <main className="flex">
+    <main className="flex ">
       <aside className="hidden lg:block">
         <Sidebar />
       </aside>
-      <section>
-        <nav className="lg:hidden">
+      <section className="w-full">
+        <nav className="lg:hidden w-full">
           <Navbar />
         </nav>
         <Dashboard />

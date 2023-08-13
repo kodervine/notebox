@@ -1,6 +1,8 @@
+import { useNoteContext } from "src/contexts";
+
 export const Header = () => {
   return (
-    <form className="flex gap-3">
+    <form className="flex gap-3 w-full">
       <section>
         <label
           htmlFor="search-notes"

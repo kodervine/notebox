@@ -1,3 +1,6 @@
+import { useNoteContext } from "src/contexts";
+
 export const TopCard = () => {
-  return <div>TopCard</div>;
+  const { appNotes } = useNoteContext();
+  return <div>{appNotes?.length}</div>;
 };
