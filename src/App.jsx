@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dashboard } from "src/pages";
-import { Sidebar } from "src/components";
+import { Navbar, Sidebar } from "src/components";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,8 +10,12 @@ function App() {
       <aside className="hidden lg:block">
         <Sidebar />
       </aside>
-
-      <Dashboard />
+      <section>
+        <nav className="lg:hidden">
+          <Navbar />
+        </nav>
+        <Dashboard />
+      </section>
     </main>
   );
 }

@@ -4,3 +4,4 @@ export * from "./Sidebar";
 export * from "./NotesCard";
 export * from "./NotesContainer";
 export * from "./NotesCard";
+export * from "./Navbar";
