@@ -22,6 +22,9 @@ export const NotesCard = () => {
           <div className="bg-red-600 rounded-full flex p-2 items-center justify-center">
             <AiOutlineDelete size={16} color="white" />
           </div>
+          <span class="bg-gray-100 text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded ">
+            {tag}
+          </span>
         </div>
       </section>
     );

@@ -1,6 +1,6 @@
 import { useNoteContext } from "src/contexts";
-
 export const Header = () => {
+  const { handleOpenFormModal } = useNoteContext();
   return (
     <form className="flex gap-3 w-full">
       <section>

@@ -11,9 +11,8 @@ export const NotesForm = () => {
     tag: "",
   });
 
-  const { handleAddNote, appNotes } = useNoteContext();
-  console.log(appNotes);
-
+  const { handleAddNote, appNotes, openNotesFormModal, handleCloseFormModal } =
+    useNoteContext();
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -21,7 +20,6 @@ export const NotesForm = () => {
 
   const handleSubmitForm = (event) => {
     event.preventDefault();
-    console.log(formData);
     handleAddNote(formData);
   };
 
@@ -53,6 +51,7 @@ export const NotesForm = () => {
             name="title"
             value={formData.title}
             onChange={handleInputChange}
+            required
           />
         </div>
         <div className="flex flex-col">
@@ -64,12 +63,13 @@ export const NotesForm = () => {
             name="description"
             value={formData.description}
             onChange={handleInputChange}
+            required
           />
         </div>
-        <section className="flex items-center space-x-4">
+        <section className="flex items-center justify-between w-full">
           <div className="flex flex-col">
             <label htmlFor="tag">Tag</label>
-            <div className="flex focus-within:text-gray-600 text-gray-400 items-center">
+            <div className=" focus-within:text-gray-600 text-gray-400 ">
               <select
                 name="tag"
                 value={formData.tag}
@@ -87,7 +87,7 @@ export const NotesForm = () => {
           </div>
           <div className="flex flex-col">
             <label htmlFor="tag">Select custom tag</label>
-            <div className="relative focus-within:text-gray-600 text-gray-400">
+            <div className=" focus-within:text-gray-600 text-gray-400">
               <input
                 type="text"
                 name="tag"
@@ -95,13 +95,18 @@ export const NotesForm = () => {
                 className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
                 value={formData.tag}
                 onChange={handleInputChange}
+                required
               />
             </div>
           </div>
         </section>
       </div>
       <div className="pt-4 flex items-center space-x-4">
-        <button className="flex gap-2 justify-center items-center w-full px-4 py-3 rounded-md opacity-90 hover:opacity-100 focus:outline-none bg-red-600 text-white">
+        <button
+          className="flex gap-2 justify-center items-center w-full px-4 py-3 rounded-md opacity-90 hover:opacity-100 focus:outline-none bg-red-600 text-white"
+          type="button"
+          onClick={handleCloseFormModal}
+        >
           <GiCancel />
           <span>Cancel</span>
         </button>
