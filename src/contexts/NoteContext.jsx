@@ -8,6 +8,14 @@ export const useNoteContext = () => {
 
 export const AppNoteProvider = ({ children }) => {
   const [appNotes, setAppNotes] = useState([]);
+  const [IsEditingNote, setIsEditingNote] = useState(false);
+  const [openNotesFormModal, setOpenNotesFormModal] = useState(false);
+  const handleCloseFormModal = () => {
+    setOpenNotesFormModal(false);
+  };
+  const handleOpenFormModal = () => {
+    setOpenNotesFormModal(true);
+  };
 
   const getNotesFromLocalStorage = () => {
     const notesData = localStorage.getItem("appNotes");
@@ -19,7 +27,7 @@ export const AppNoteProvider = ({ children }) => {
   };
 
   const handleAddNote = (note) => {
-    setAppNotes(...appNotes, note);
+    setAppNotes([...appNotes, note]);
     saveNotesToLocalStorage([...appNotes, note]);
   };
 
@@ -41,12 +49,21 @@ export const AppNoteProvider = ({ children }) => {
 
   useEffect(() => {
     const notesDataFromLocalStorage = getNotesFromLocalStorage();
-    setAppNotes(notesDataFromLocalStorage);
+    setAppNotes(notesDataFromLocalStorage || []);
   }, []);
 
   return (
     <AppNoteContext.Provider
-      value={{ appNotes, handleAddNote, handleDeleteNote, handleEditNote }}
+      value={{
+        IsEditingNote,
+        appNotes,
+        handleAddNote,
+        handleDeleteNote,
+        handleEditNote,
+        openNotesFormModal,
+        handleCloseFormModal,
+        handleOpenFormModal,
+      }}
     >
       {children}
     </AppNoteContext.Provider>
