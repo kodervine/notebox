@@ -8,13 +8,27 @@ export const useNoteContext = () => {
 
 export const AppNoteProvider = ({ children }) => {
   const [appNotes, setAppNotes] = useState([]);
-  const [IsEditingNote, setIsEditingNote] = useState(false);
+  const [isEditingNote, setIsEditingNote] = useState(false);
+  const [selectedNote, setSelectedNote] = useState(null);
   const [openNotesFormModal, setOpenNotesFormModal] = useState(false);
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const handleCloseFormModal = () => {
     setOpenNotesFormModal(false);
   };
   const handleOpenFormModal = () => {
     setOpenNotesFormModal(true);
+  };
+
+  const handleOpenConfirmationModal = () => {
+    setOpenConfirmationModal(true);
+  };
+
+  const handleCloseConfirmationModal = () => {
+    setOpenConfirmationModal(false);
+  };
+
+  const handleSelectNote = (note) => {
+    setSelectedNote(note);
   };
 
   const getNotesFromLocalStorage = () => {
@@ -31,9 +45,10 @@ export const AppNoteProvider = ({ children }) => {
     saveNotesToLocalStorage([...appNotes, note]);
   };
 
+  // used the time note was created for the id
   const handleEditNote = (noteId, updatedNote) => {
     const updatedNoteArray = appNotes?.map((note) => {
-      return note.id === noteId ? { ...note, ...updatedNote } : note;
+      return note.dateCreated === noteId ? { ...note, ...updatedNote } : note;
     });
     setAppNotes(updatedNoteArray);
     saveNotesToLocalStorage(updatedNoteArray);
@@ -41,7 +56,7 @@ export const AppNoteProvider = ({ children }) => {
 
   const handleDeleteNote = (noteId) => {
     const updatedNoteArray = appNotes?.filter((note) => {
-      return note.id !== noteId;
+      return note.dateCreated !== noteId;
     });
     setAppNotes(updatedNoteArray);
     saveNotesToLocalStorage(updatedNoteArray);
@@ -55,7 +70,10 @@ export const AppNoteProvider = ({ children }) => {
   return (
     <AppNoteContext.Provider
       value={{
-        IsEditingNote,
+        isEditingNote,
+        setIsEditingNote,
+        selectedNote,
+        handleSelectNote,
         appNotes,
         handleAddNote,
         handleDeleteNote,
@@ -63,6 +81,9 @@ export const AppNoteProvider = ({ children }) => {
         openNotesFormModal,
         handleCloseFormModal,
         handleOpenFormModal,
+        openConfirmationModal,
+        handleOpenConfirmationModal,
+        handleCloseConfirmationModal,
       }}
     >
       {children}

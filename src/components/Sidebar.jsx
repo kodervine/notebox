@@ -4,7 +4,6 @@ import NoteLogo from "src/assets/Notes-amico.svg";
 
 const sidebarElements = [
   { name: "Dashboard", icon: FaHome, link: "/dashboard" },
-  { name: "Create New Note", icon: GoGoal, link: "/new" },
 ];
 
 export const Sidebar = () => {
