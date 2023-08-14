@@ -1,10 +1,7 @@
 import { FaHome } from "react-icons/fa";
-import { GoGoal } from "react-icons/go";
 import NoteLogo from "src/assets/Notes-amico.svg";
 
-const sidebarElements = [
-  { name: "Dashboard", icon: FaHome, link: "/dashboard" },
-];
+const sidebarElements = [{ name: "Dashboard", icon: FaHome, link: "/" }];
 
 export const Sidebar = () => {
   return (

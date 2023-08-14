@@ -7,6 +7,7 @@ export const useNoteContext = () => {
 };
 
 export const AppNoteProvider = ({ children }) => {
+  const [searchNoteValue, setSearchNoteValue] = useState("");
   const [appNotes, setAppNotes] = useState([]);
   const [isEditingNote, setIsEditingNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState(null);
@@ -62,6 +63,41 @@ export const AppNoteProvider = ({ children }) => {
     saveNotesToLocalStorage(updatedNoteArray);
   };
 
+  const handleSortAppNotes = (sortingOption) => {
+    let sortedNotes = [...appNotes];
+    switch (sortingOption) {
+      case "recent":
+        sortedNotes.sort(
+          (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)
+        );
+        break;
+      case "hour":
+        const hourAgo = new Date(new Date() - 3600000);
+        sortedNotes = sortedNotes.filter(
+          (note) => new Date(note.dateCreated) > hourAgo
+        );
+        break;
+      case "day":
+        const dayAgo = new Date(new Date() - 86400000);
+        sortedNotes = sortedNotes.filter(
+          (note) => new Date(note.dateCreated) > dayAgo
+        );
+        break;
+      case "oldest":
+        sortedNotes.sort(
+          (a, b) => new Date(a.dateCreated) - new Date(b.dateCreated)
+        );
+        break;
+      default:
+        break;
+    }
+    setAppNotes(sortedNotes);
+  };
+
+  const handleSearchValue = (value) => {
+    setSearchNoteValue(value);
+  };
+
   useEffect(() => {
     const notesDataFromLocalStorage = getNotesFromLocalStorage();
     setAppNotes(notesDataFromLocalStorage || []);
@@ -70,11 +106,14 @@ export const AppNoteProvider = ({ children }) => {
   return (
     <AppNoteContext.Provider
       value={{
+        searchNoteValue,
+        handleSearchValue,
         isEditingNote,
         setIsEditingNote,
         selectedNote,
         handleSelectNote,
         appNotes,
+        handleSortAppNotes,
         handleAddNote,
         handleDeleteNote,
         handleEditNote,

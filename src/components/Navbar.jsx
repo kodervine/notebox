@@ -2,7 +2,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import NoteLogo from "src/assets/Notes-amico.svg";
 export const Navbar = () => {
   return (
-    <nav className="bg-white border-gray-200">
+    <nav className="bg-gray-900 text-gray-100 mb-2">
       <div className="flex items-center justify-between mx-auto p-4">
         <a href="/" className="flex gap-2">
           <img
@@ -16,7 +16,7 @@ export const Navbar = () => {
 
         <button
           type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
         >
           <GiHamburgerMenu />
         </button>

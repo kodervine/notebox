@@ -1,11 +1,12 @@
 import { useNoteContext } from "src/contexts";
 import { BiSolidEditAlt } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
-import { ConfirmationModal } from "src/components";
+import { ConfirmationModal, NoNotesMessage } from "src/components";
 
 export const NotesCard = () => {
   const {
     appNotes,
+    searchNoteValue,
     handleSelectNote,
     setIsEditingNote,
     selectedNote,
@@ -14,6 +15,13 @@ export const NotesCard = () => {
     handleOpenConfirmationModal,
     handleCloseConfirmationModal,
   } = useNoteContext();
+
+  const filteredNotes = appNotes?.filter((note) => {
+    return note.tag.toLowerCase().includes(searchNoteValue.toLowerCase());
+  });
+  if (filteredNotes?.length === 0) {
+    return <NoNotesMessage message="No notes match this tag" />;
+  }
   return (
     <>
       {openConfirmationModal && (
@@ -29,13 +37,25 @@ export const NotesCard = () => {
           )}
         </>
       )}
-      {appNotes?.map((notes, index) => {
-        const { title, content, tag } = notes;
+      {filteredNotes?.map((notes, index) => {
+        const { title, content, dateCreated, tag } = notes;
+        const dateObject = new Date(dateCreated);
+        const formattedDate = dateObject.toLocaleString("en-US", {
+          day: "2-digit",
+          month: "long",
+          year: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          timeZoneName: "short",
+        });
+
         return (
           <section className="rounded-sm shadow-lg " key={index}>
             <div className="mx-6 my-4 border-b border-gray-light">
               <h2 className="font-medium text-base  mb-4">{title}</h2>
               <p className="font-normal text-sm mb-4">{content}</p>
+              <p className="font-normal text-sm mb-4">{formattedDate}</p>
             </div>
             <div className="mx-6 my-4 flex gap-3">
               <button

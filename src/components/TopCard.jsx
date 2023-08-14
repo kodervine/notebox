@@ -1,26 +1,19 @@
 import { useNoteContext } from "src/contexts";
-import { TbNewSection } from "react-icons/tb";
+import { CgNotes } from "react-icons/cg";
 export const TopCard = () => {
-  const { appNotes, handleOpenFormModal, setIsEditingNote } = useNoteContext();
+  const { appNotes } = useNoteContext();
 
   return (
-    <div>
-      <section className="flex w-full">
-        <div>
-          Total No of Notes: <span>{appNotes?.length}</span>
+    <section className="grid grid-cols-1 items-center justify-between my-2">
+      <div className="flex items-center p-8 bg-white shadow rounded-lg">
+        <div className="inline-flex  items-center justify-center h-16 w-16 text-yellow-900 bg-yellow-100 rounded-full mr-6">
+          <CgNotes size={30} />
         </div>
-        <button
-          type="button"
-          className="text-white  bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 flex gap-2 items-center"
-          onClick={() => {
-            setIsEditingNote(false);
-            handleOpenFormModal();
-          }}
-        >
-          <TbNewSection className="text-white" />
-          <span>Create New Note</span>
-        </button>
-      </section>
-    </div>
+        <div>
+          <span className="block text-2xl font-bold">{appNotes?.length}</span>
+          <span className="block text-gray-500">Total Notes</span>
+        </div>
+      </div>
+    </section>
   );
 };
