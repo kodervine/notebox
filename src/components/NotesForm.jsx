@@ -45,7 +45,7 @@ export const NotesForm = () => {
     handleCloseFormModal();
   };
 
-  // Predefined tags
+  // initial tags
   const formTags = ["Work", "Personal", "Career", "Ideas", "Others"];
 
   return (

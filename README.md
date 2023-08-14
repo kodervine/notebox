@@ -1,12 +1,30 @@
-## In Progres
+# My NoteBox
 
-A note taking app
+Welcome to **My NoteBox**! This is a simple web application for creating, managing, and organizing your notes.
 
-Features
+[Link To Demo](https://notebox.brimble.app)
 
-1. Create notes
-2. Store to local storage
-3. Edit notes
-4. Delete notes
-5. Sort by recent
-6. Delete note
+## Features
+
+- Create new notes with a title, content, and optional tags.
+- Edit and update notes.
+- Delete unwanted notes.
+- Sort notes by recency, last hour, last day, or oldest.
+- Search notes by tags
+- Responsive design, works well on desktop and mobile devices.
+- Minimalist and user-friendly interface.
+
+### Desktop View
+
+![Desktop View](src/assets/notebox-desktopscreen.png)
+
+### Mobile View
+
+![Mobile View](src/assets/notebox-smallscreen.png)
+
+## Technologies Used
+
+- React + Vite: A popular JavaScript library for building user interfaces.
+- Local Storage: Used to store notes data locally in the browser.
+- Tailwind CSS: A utility-first CSS framework for fast and responsive UI development.
+- Brimble: A Nigeria owned Platform as a service for deployment

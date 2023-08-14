@@ -5,10 +5,8 @@ export const Dashboard = () => {
   const { openNotesFormModal, handleCloseFormModal } = useNoteContext();
   return (
     <main className="flex flex-col px-4 w-full relative">
-      <div className="flex flex-col lg:flex-row flex-nowrap">
-        <Header />
-        <TopCard />
-      </div>
+      <Header />
+      <TopCard />
       {openNotesFormModal && (
         <>
           <div
