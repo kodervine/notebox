@@ -5,7 +5,7 @@ export const TopCard = () => {
 
   return (
     <div>
-      <section className="flex">
+      <section className="flex w-full">
         <div>
           Total No of Notes: <span>{appNotes?.length}</span>
         </div>

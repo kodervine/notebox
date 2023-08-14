@@ -1,19 +1,36 @@
 import { useNoteContext } from "src/contexts";
 import { BiSolidEditAlt } from "react-icons/bi";
 import { AiOutlineDelete } from "react-icons/ai";
+import { ConfirmationModal } from "src/components";
 
 export const NotesCard = () => {
   const {
     appNotes,
     handleSelectNote,
-    handleDeleteNote,
     setIsEditingNote,
+    selectedNote,
     handleOpenFormModal,
+    openConfirmationModal,
+    handleOpenConfirmationModal,
+    handleCloseConfirmationModal,
   } = useNoteContext();
   return appNotes?.map((notes, index) => {
-    const { title, content, dateCreated, tag } = notes;
+    const { title, content, tag } = notes;
     return (
       <section className="rounded-sm shadow-lg " key={index}>
+        {openConfirmationModal && (
+          <>
+            <div
+              className="backdrop-filter backdrop-blur-lg bg-black opacity-70 z-30 fixed top-0 left-0 w-full h-full"
+              onClick={handleCloseConfirmationModal}
+            ></div>
+            {selectedNote && (
+              <section className="absolute z-50 w-full lg:w-[80%] top-0">
+                <ConfirmationModal />
+              </section>
+            )}
+          </>
+        )}
         <div className="mx-6 my-4 border-b border-gray-light">
           <h2 className="font-medium text-base  mb-4">{title}</h2>
           <p className="font-normal text-sm mb-4">{content}</p>
@@ -33,7 +50,7 @@ export const NotesCard = () => {
             className="bg-red-600 rounded-full flex p-2 items-center justify-center cursor-pointer"
             onClick={() => {
               handleSelectNote(notes);
-              handleDeleteNote(dateCreated);
+              handleOpenConfirmationModal();
             }}
           >
             <AiOutlineDelete size={16} color="white" />

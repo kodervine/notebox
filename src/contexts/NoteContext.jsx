@@ -11,11 +11,21 @@ export const AppNoteProvider = ({ children }) => {
   const [isEditingNote, setIsEditingNote] = useState(false);
   const [selectedNote, setSelectedNote] = useState(null);
   const [openNotesFormModal, setOpenNotesFormModal] = useState(false);
+  const [openConfirmationModal, setOpenConfirmationModal] = useState(false);
   const handleCloseFormModal = () => {
     setOpenNotesFormModal(false);
   };
   const handleOpenFormModal = () => {
     setOpenNotesFormModal(true);
+  };
+  console.log(openConfirmationModal);
+
+  const handleOpenConfirmationModal = () => {
+    setOpenConfirmationModal(true);
+  };
+
+  const handleCloseConfirmationModal = () => {
+    setOpenConfirmationModal(false);
   };
 
   const handleSelectNote = (note) => {
@@ -72,6 +82,9 @@ export const AppNoteProvider = ({ children }) => {
         openNotesFormModal,
         handleCloseFormModal,
         handleOpenFormModal,
+        openConfirmationModal,
+        handleOpenConfirmationModal,
+        handleCloseConfirmationModal,
       }}
     >
       {children}
