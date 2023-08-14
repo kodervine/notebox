@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdAddTask, MdOutlineAddTask } from "react-icons/md";
 import { GiCancel } from "react-icons/gi";
 import { useNoteContext } from "src/contexts";
@@ -6,21 +6,43 @@ import { useNoteContext } from "src/contexts";
 export const NotesForm = () => {
   const [formData, setFormData] = useState({
     title: "",
-    description: "",
+    content: "",
     dateCreated: new Date(),
     tag: "",
   });
 
-  const { handleAddNote, appNotes, openNotesFormModal, handleCloseFormModal } =
-    useNoteContext();
+  const {
+    handleAddNote,
+    handleCloseFormModal,
+    selectedNote,
+    isEditingNote,
+    handleEditNote,
+  } = useNoteContext();
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
+  useEffect(() => {
+    isEditingNote &&
+      setFormData((prev) => {
+        return {
+          ...prev,
+          title: selectedNote.title,
+          content: selectedNote.content,
+          dateCreated: selectedNote.dateCreated,
+          tag: selectedNote.tag,
+        };
+      });
+  }, [selectedNote]);
   const handleSubmitForm = (event) => {
     event.preventDefault();
-    handleAddNote(formData);
+    if (isEditingNote) {
+      handleEditNote(formData.dateCreated, formData);
+    } else {
+      handleAddNote(formData);
+    }
+    handleCloseFormModal();
   };
 
   // Predefined tags
@@ -36,7 +58,9 @@ export const NotesForm = () => {
           <MdAddTask />
         </div>
         <div className="block pl-2 font-semibold text-xl self-start text-gray-700">
-          <h2 className="leading-relaxed">Add a New Note</h2>
+          <h2 className="leading-relaxed">
+            {isEditingNote ? "Editing note" : "Add a New Note"}
+          </h2>
           <p className="text-sm text-gray-500 ">Get work done</p>
         </div>
       </div>
@@ -55,13 +79,13 @@ export const NotesForm = () => {
           />
         </div>
         <div className="flex flex-col">
-          <label className="leading-loose">Note Description</label>
+          <label className="leading-loose">Note content</label>
           <input
             type="text"
             className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 min-h-40 "
             placeholder="What do you want to write about?"
-            name="description"
-            value={formData.description}
+            name="content"
+            value={formData.content}
             onChange={handleInputChange}
             required
           />
@@ -115,7 +139,7 @@ export const NotesForm = () => {
           className="bg-gray-800 gap-2 flex opacity-90 hover:opacity-100 justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none"
         >
           <MdOutlineAddTask />
-          Create
+          {isEditingNote ? "Update" : "Create"}
         </button>
       </div>
     </form>
