@@ -1,10 +1,4 @@
-import {
-  ConfirmationModal,
-  Header,
-  NotesContainer,
-  NotesForm,
-  TopCard,
-} from "src/components";
+import { Header, NotesContainer, NotesForm, TopCard } from "src/components";
 import { useNoteContext } from "src/contexts";
 
 export const Dashboard = () => {
@@ -18,7 +12,7 @@ export const Dashboard = () => {
       {openNotesFormModal && (
         <>
           <div
-            className="backdrop-filter backdrop-blur-lg bg-black opacity-70 z-20  fixed top-0 left-0 w-full h-full"
+            className="backdrop-filter backdrop-blur-lg bg-black opacity-70 z-20 fixed top-0 left-0 w-full h-full"
             onClick={handleCloseFormModal}
           ></div>
           <section className="absolute z-50 w-full lg:w-[80%]">

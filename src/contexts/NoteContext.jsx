@@ -18,7 +18,6 @@ export const AppNoteProvider = ({ children }) => {
   const handleOpenFormModal = () => {
     setOpenNotesFormModal(true);
   };
-  console.log(openConfirmationModal);
 
   const handleOpenConfirmationModal = () => {
     setOpenConfirmationModal(true);
