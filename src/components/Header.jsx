@@ -44,7 +44,7 @@ export const Header = () => {
       <section>
         <button
           type="button"
-          className="text-white  bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 flex gap-2 items-center"
+          className="text-white lg:w-full bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 flex  gap-3 items-center"
           onClick={() => {
             setIsEditingNote(false);
             handleOpenFormModal();

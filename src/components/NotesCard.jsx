@@ -24,6 +24,19 @@ export const NotesCard = () => {
   }
   return (
     <>
+      {openConfirmationModal && (
+        <>
+          <div
+            className="backdrop-filter backdrop-blur-lg bg-black opacity-70 z-30 fixed top-0 left-0 w-full h-screen"
+            onClick={handleCloseConfirmationModal}
+          ></div>
+          {selectedNote && (
+            <section className="absolute z-50 w-full lg:w-[80%] top-0">
+              <ConfirmationModal />
+            </section>
+          )}
+        </>
+      )}
       {filteredNotes?.map((notes, index) => {
         const { title, content, dateCreated, tag } = notes;
         const dateObject = new Date(dateCreated);
@@ -71,19 +84,6 @@ export const NotesCard = () => {
           </section>
         );
       })}
-      {openConfirmationModal && (
-        <div className="relative">
-          <div
-            className="backdrop-filter backdrop-blur-lg bg-black opacity-70 z-30 fixed top-0 left-0 w-full h-screen"
-            onClick={handleCloseConfirmationModal}
-          ></div>
-          {selectedNote && (
-            <section className="absolute z-50 w-full lg:w-[80%] bottom-0">
-              <ConfirmationModal />
-            </section>
-          )}
-        </div>
-      )}
     </>
   );
 };
