@@ -41,46 +41,42 @@ export const AppNoteProvider = ({ children }) => {
     localStorage.setItem("appNotes", JSON.stringify(notesData));
   };
 
-  const handleAddNote = (note) => {
-    setAppNotes([...appNotes, note]);
-    saveNotesToLocalStorage([...appNotes, note]);
+  // sort and update notes functions by recency
+  const sortAndUpdateNotes = (notes) => {
+    const sortedNotes = notes.sort(
+      (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)
+    );
+    setAppNotes(sortedNotes);
+    saveNotesToLocalStorage(sortedNotes);
   };
 
-  // used the time note was created for the id
+  const handleAddNote = (note) => {
+    const updatedNotes = [...appNotes, note];
+    sortAndUpdateNotes(updatedNotes);
+  };
+
   const handleEditNote = (noteId, updatedNote) => {
     const updatedNoteArray = appNotes?.map((note) => {
       return note.dateCreated === noteId ? { ...note, ...updatedNote } : note;
     });
-    setAppNotes(updatedNoteArray);
-    saveNotesToLocalStorage(updatedNoteArray);
+
+    sortAndUpdateNotes(updatedNoteArray);
   };
 
   const handleDeleteNote = (noteId) => {
+    // Filter out the note to be deleted from appNotes
     const updatedNoteArray = appNotes?.filter((note) => {
       return note.dateCreated !== noteId;
     });
-    setAppNotes(updatedNoteArray);
-    saveNotesToLocalStorage(updatedNoteArray);
+    sortAndUpdateNotes(updatedNoteArray);
   };
 
   const handleSortAppNotes = (sortingOption) => {
     let sortedNotes = [...appNotes];
     switch (sortingOption) {
-      case "recent":
+      case "newest":
         sortedNotes.sort(
           (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)
-        );
-        break;
-      case "hour":
-        const hourAgo = new Date(new Date() - 3600000);
-        sortedNotes = sortedNotes.filter(
-          (note) => new Date(note.dateCreated) > hourAgo
-        );
-        break;
-      case "day":
-        const dayAgo = new Date(new Date() - 86400000);
-        sortedNotes = sortedNotes.filter(
-          (note) => new Date(note.dateCreated) > dayAgo
         );
         break;
       case "oldest":
@@ -89,6 +85,9 @@ export const AppNoteProvider = ({ children }) => {
         );
         break;
       default:
+        sortedNotes.sort(
+          (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)
+        );
         break;
     }
     setAppNotes(sortedNotes);
@@ -100,7 +99,14 @@ export const AppNoteProvider = ({ children }) => {
 
   useEffect(() => {
     const notesDataFromLocalStorage = getNotesFromLocalStorage();
-    setAppNotes(notesDataFromLocalStorage || []);
+    if (notesDataFromLocalStorage) {
+      const sortedNotes = notesDataFromLocalStorage.sort(
+        (a, b) => new Date(b.dateCreated) - new Date(a.dateCreated)
+      );
+      setAppNotes(sortedNotes);
+    } else {
+      setAppNotes([]);
+    }
   }, []);
 
   return (

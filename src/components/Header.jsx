@@ -34,12 +34,10 @@ export const Header = () => {
           id="sort-by"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2 cursor-pointer "
           onChange={handleSortChange}
-          defaultValue="recent"
+          defaultValue="newest"
         >
           <option>Sort By</option>
-          <option value="recent">Recent</option>
-          <option value="hour">1 Hour Ago</option>
-          <option value="day">A day Ago</option>
+          <option value="newest">Newest</option>
           <option value="oldest">Oldest</option>
         </select>
       </section>
