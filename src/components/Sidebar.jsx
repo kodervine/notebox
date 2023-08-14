@@ -5,7 +5,7 @@ const sidebarElements = [{ name: "Dashboard", icon: FaHome, link: "/" }];
 
 export const Sidebar = () => {
   return (
-    <main className="min-h-screen p-3  w-60 bg-gray-900 text-gray-100">
+    <main className="hidden lg:block fixed h-full p-3  w-60 bg-gray-900 text-gray-100">
       <section className="flex items-center p-2 space-x-4">
         <img
           src={NoteLogo}

@@ -7,7 +7,7 @@ export const ConfirmationModal = () => {
   return (
     <>
       <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
-        <div className="p-6 text-center">
+        <div className="p-2 lg:p-6 text-center">
           <div className="flex flex-col items-center justify-center mt-8">
             <PiWarningCircleBold size={100} opacity={0.3} />
           </div>

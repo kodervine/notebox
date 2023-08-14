@@ -51,7 +51,7 @@ export const NotesForm = () => {
   return (
     <form
       onSubmit={handleSubmitForm}
-      className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10"
+      className="relative px-4 py-10 bg-white lg:mx-8 md:mx-0 shadow rounded-3xl "
     >
       <div className="flex items-center space-x-5">
         <div className="h-14 w-14 bg-gray-800 rounded-full flex flex-shrink-0 justify-center items-center text-white text-2xl ">
@@ -79,19 +79,19 @@ export const NotesForm = () => {
           />
         </div>
         <div className="flex flex-col">
-          <label className="leading-loose">Note content</label>
-          <input
-            type="text"
-            className="px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 min-h-40 "
+          <label htmlFor="content">Note content</label>
+          <textarea
+            rows="4"
+            className="block p-2.5 text-sm px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
             placeholder="What do you want to write about?"
             name="content"
             value={formData.content}
             onChange={handleInputChange}
             required
-          />
+          ></textarea>
         </div>
-        <section className="flex items-center justify-between w-full">
-          <div className="flex flex-col">
+        <section className="flex flex-col md:flex-row md:items-center md:justify-between w-full gap-2">
+          <div className="flex flex-col w-full">
             <label htmlFor="tag">Tag</label>
             <div className=" focus-within:text-gray-600 text-gray-400 ">
               <select
@@ -109,8 +109,8 @@ export const NotesForm = () => {
               </select>
             </div>
           </div>
-          <div className="flex flex-col">
-            <label htmlFor="tag">Select custom tag</label>
+          <div className="flex flex-col w-full">
+            <label htmlFor="tag">Or create custom tag</label>
             <div className=" focus-within:text-gray-600 text-gray-400">
               <input
                 type="text"
@@ -125,7 +125,7 @@ export const NotesForm = () => {
           </div>
         </section>
       </div>
-      <div className="pt-4 flex items-center space-x-4">
+      <div className="pt-4 flex flex-col-reverse md:flex-row gap-2 items-center">
         <button
           className="flex gap-2 justify-center items-center w-full px-4 py-3 rounded-md opacity-90 hover:opacity-100 focus:outline-none bg-red-600 text-white"
           type="button"

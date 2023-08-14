@@ -1,16 +1,13 @@
-import { useState } from "react";
 import { Dashboard } from "src/pages";
 import { Navbar, Sidebar } from "src/components";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <main className="flex ">
-      <aside className="hidden lg:block">
+      <aside>
         <Sidebar />
       </aside>
-      <section className="w-full">
+      <section className="w-full lg:ml-60">
         <nav className="lg:hidden w-full">
           <Navbar />
         </nav>
