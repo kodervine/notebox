@@ -11,7 +11,9 @@ export const TopCard = () => {
         </div>
         <div>
           <span className="block text-2xl font-bold">{appNotes?.length}</span>
-          <span className="block text-gray-500">Total Notes</span>
+          <span className="block text-gray-500">
+            {appNotes?.length <= 1 ? "Total Note" : "Total Notes"}
+          </span>
         </div>
       </div>
     </section>
