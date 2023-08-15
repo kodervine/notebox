@@ -97,6 +97,7 @@ export const AppNoteProvider = ({ children }) => {
     setSearchNoteValue(value);
   };
 
+  // fetch existing notes if it exists from local storage immediately on app load
   useEffect(() => {
     const notesDataFromLocalStorage = getNotesFromLocalStorage();
     if (notesDataFromLocalStorage) {

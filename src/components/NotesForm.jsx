@@ -45,7 +45,7 @@ export const NotesForm = () => {
     handleCloseFormModal();
   };
 
-  // initial tags
+  // initial defined tags
   const formTags = ["Work", "Personal", "Career", "Ideas", "Others"];
 
   return (
@@ -81,7 +81,7 @@ export const NotesForm = () => {
         <div className="flex flex-col">
           <label htmlFor="content">Note content</label>
           <textarea
-            rows="4"
+            rows="10"
             className="block p-2.5 text-sm px-4 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600"
             placeholder="What do you want to write about?"
             name="content"
