@@ -6,7 +6,7 @@ Welcome to **My NoteBox**! This is a simple web application for creating, managi
 
 ## Features
 
-- Create new notes with a title, content, and optional tags.
+- Create new notes with a title, content, and tags.
 - Edit and update notes.
 - Delete notes.
 - Sort notes by newest or oldest.
