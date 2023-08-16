@@ -6,7 +6,7 @@ export const ConfirmationModal = () => {
     useNoteContext();
   return (
     <>
-      <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <div className="relative bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-100">
         <div className="p-2 lg:p-6 text-center">
           <div className="flex flex-col items-center justify-center mt-8">
             <PiWarningCircleBold size={100} opacity={0.3} />
@@ -26,7 +26,7 @@ export const ConfirmationModal = () => {
           </button>
           <button
             type="button"
-            className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-40"
+            className="text-gray-500 bg-white dark:bg-gray-800 dark:text-gray-100 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-40"
             onClick={handleCloseConfirmationModal}
           >
             No, cancel

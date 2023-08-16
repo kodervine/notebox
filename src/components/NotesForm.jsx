@@ -51,7 +51,7 @@ export const NotesForm = () => {
   return (
     <form
       onSubmit={handleSubmitForm}
-      className="relative px-4 py-10 bg-white lg:mx-8 md:mx-0 shadow rounded-3xl "
+      className="relative px-4 py-10 bg-white lg:mx-8 md:mx-0 shadow rounded-3xl dark:bg-gray-800 dark:text-gray-100"
     >
       <div className="flex items-center space-x-5">
         <div className="h-14 w-14 bg-gray-800 rounded-full flex flex-shrink-0 justify-center items-center text-white text-2xl ">
